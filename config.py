@@ -14,6 +14,19 @@ class Settings(BaseSettings):
     # Anthropic API
     ANTHROPIC_API_KEY: str
     
+    # Server
+    PORT: int = 8000
+    ENVIRONMENT: str = "production"
+    
+    # CORS
+    CORS_ORIGINS: str = "*"
+    
+    @property
+    def cors_origins_list(self):
+        if self.CORS_ORIGINS == "*":
+            return ["*"]
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+    
     # Debug mode
     DEBUG: bool = False
     
@@ -35,5 +48,8 @@ settings = Settings(
     ANTHROPIC_API_KEY=os.getenv("ANTHROPIC_API_KEY", ""),
     ALGORITHM=os.getenv("ALGORITHM", "HS256"),
     ACCESS_TOKEN_EXPIRE_MINUTES=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")),
+    PORT=int(os.getenv("PORT", "8000")),
+    ENVIRONMENT=os.getenv("ENVIRONMENT", "production"),
+    CORS_ORIGINS=os.getenv("CORS_ORIGINS", "*"),
     DEBUG=os.getenv("DEBUG", "False").lower() == "true"
 )
