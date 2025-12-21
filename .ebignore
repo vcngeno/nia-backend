@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.env.example
+venv/
+*.db
+.DS_Store
+*.log
+speed_patch.py
+test_models.py
+.git/

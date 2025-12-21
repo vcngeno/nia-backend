@@ -1,0 +1,266 @@
+Retrieving logs...
+============= i-099d1a67bf722807d ==============
+----------------------------------------
+/var/log/nginx/access.log
+----------------------------------------
+204.76.203.219 - - [21/Dec/2025:14:26:59 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" "-"
+141.98.11.140 - - [21/Dec/2025:14:30:43 +0000] "GET / HTTP/1.1" 502 150 "-" "-" "-"
+114.5.147.25 - - [21/Dec/2025:14:34:01 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36" "-"
+54.82.96.33 - - [21/Dec/2025:14:36:10 +0000] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" "-"
+34.52.238.9 - - [21/Dec/2025:14:36:43 +0000] "GET / HTTP/1.1" 502 150 "-" "python-requests/2.32.5" "-"
+74.73.34.198 - - [21/Dec/2025:14:36:49 +0000] "GET / HTTP/1.1" 502 150 "-" "curl/8.12.1" "-"
+74.73.34.198 - - [21/Dec/2025:14:39:41 +0000] "GET / HTTP/1.1" 502 150 "-" "curl/8.12.1" "-"
+74.73.34.198 - - [21/Dec/2025:14:56:16 +0000] "GET / HTTP/1.1" 502 150 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Safari/605.1.15" "-"
+74.73.34.198 - - [21/Dec/2025:14:56:16 +0000] "GET /favicon.ico HTTP/1.1" 502 150 "http://nia-production.eba-wkuspvr5.us-east-1.elasticbeanstalk.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Safari/605.1.15" "-"
+
+
+----------------------------------------
+/var/log/nginx/error.log
+----------------------------------------
+2025/12/21 14:03:20 [warn] 2104#2104: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:03:21 [warn] 2138#2138: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:03:21 [warn] 2139#2139: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:26:59 [error] 2143#2143: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 204.76.203.219, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "18.214.112.207:80"
+2025/12/21 14:30:43 [error] 2142#2142: *3 connect() failed (111: Connection refused) while connecting to upstream, client: 141.98.11.140, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "18.214.112.207:80"
+2025/12/21 14:32:48 [warn] 3569#3569: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:32:48 [warn] 3603#3603: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:32:48 [warn] 3604#3604: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:34:01 [error] 3608#3608: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 114.5.147.25, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "18.214.112.207:80"
+2025/12/21 14:36:10 [error] 3607#3607: *3 connect() failed (111: Connection refused) while connecting to upstream, client: 54.82.96.33, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "18.214.112.207"
+2025/12/21 14:36:43 [error] 3608#3608: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 34.52.238.9, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "18.214.112.207"
+2025/12/21 14:36:49 [error] 3608#3608: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 74.73.34.198, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "nia-production.eba-wkuspvr5.us-east-1.elasticbeanstalk.com"
+2025/12/21 14:38:22 [warn] 4294#4294: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:38:22 [warn] 4328#4328: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:38:22 [warn] 4329#4329: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:39:41 [error] 4333#4333: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 74.73.34.198, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "nia-production.eba-wkuspvr5.us-east-1.elasticbeanstalk.com"
+2025/12/21 14:43:05 [warn] 5022#5022: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:43:06 [warn] 5056#5056: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:43:06 [warn] 5057#5057: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:46:53 [warn] 5672#5672: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:46:54 [warn] 5706#5706: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:46:54 [warn] 5707#5707: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:52:41 [warn] 6502#6502: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:52:42 [warn] 6536#6536: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:52:42 [warn] 6537#6537: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:56:02 [warn] 7144#7144: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:56:03 [warn] 7178#7178: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:56:03 [warn] 7179#7179: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2025/12/21 14:56:16 [error] 7182#7182: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 74.73.34.198, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8000/", host: "nia-production.eba-wkuspvr5.us-east-1.elasticbeanstalk.com"
+2025/12/21 14:56:16 [error] 7183#7183: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 74.73.34.198, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:8000/favicon.ico", host: "nia-production.eba-wkuspvr5.us-east-1.elasticbeanstalk.com", referrer: "http://nia-production.eba-wkuspvr5.us-east-1.elasticbeanstalk.com/"
+
+
+----------------------------------------
+/var/log/web.stdout.log
+----------------------------------------
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    await self._serve(sockets)
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/server.py", line 76, in _serve
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    config.load()
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/config.py", line 434, in load
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    self.loaded_app = import_from_string(self.app)
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    module = importlib.import_module(module_str)
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/usr/lib64/python3.11/importlib/__init__.py", line 126, in import_module
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    return _bootstrap._gcd_import(name[level:], package, level)
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/current/main.py", line 10, in <module>
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    from routers import auth, children, conversation
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/current/routers/conversation.py", line 11, in <module>
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    from services.rag_service import RAGService
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/current/services/rag_service.py", line 14, in <module>
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    client = AsyncAnthropic(api_key=settings.ANTHROPIC_API_KEY)
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/anthropic/_client.py", line 363, in __init__
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    super().__init__(
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/anthropic/_base_client.py", line 1437, in __init__
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    self._client = http_client or AsyncHttpxClientWrapper(
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/anthropic/_base_client.py", line 1334, in __init__
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]:    super().__init__(**kwargs)
+Dec 21 14:56:10 ip-172-31-87-185 web[7215]: TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]: Traceback (most recent call last):
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/bin/uvicorn", line 7, in <module>
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    sys.exit(main())
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:             ^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/click/core.py", line 1485, in __call__
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return self.main(*args, **kwargs)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/click/core.py", line 1406, in main
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    rv = self.invoke(ctx)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:         ^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/click/core.py", line 1269, in invoke
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return ctx.invoke(self.callback, **ctx.params)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/click/core.py", line 824, in invoke
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return callback(*args, **kwargs)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/main.py", line 412, in main
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    run(
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/main.py", line 579, in run
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    server.run()
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/server.py", line 65, in run
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return asyncio.run(self.serve(sockets=sockets))
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/usr/lib64/python3.11/asyncio/runners.py", line 190, in run
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return runner.run(main)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/usr/lib64/python3.11/asyncio/runners.py", line 118, in run
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return self._loop.run_until_complete(task)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    await self._serve(sockets)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/server.py", line 76, in _serve
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    config.load()
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/config.py", line 434, in load
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    self.loaded_app = import_from_string(self.app)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    module = importlib.import_module(module_str)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/usr/lib64/python3.11/importlib/__init__.py", line 126, in import_module
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    return _bootstrap._gcd_import(name[level:], package, level)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/current/main.py", line 10, in <module>
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    from routers import auth, children, conversation
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/current/routers/conversation.py", line 11, in <module>
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    from services.rag_service import RAGService
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/current/services/rag_service.py", line 14, in <module>
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    client = AsyncAnthropic(api_key=settings.ANTHROPIC_API_KEY)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/anthropic/_client.py", line 363, in __init__
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    super().__init__(
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/anthropic/_base_client.py", line 1437, in __init__
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    self._client = http_client or AsyncHttpxClientWrapper(
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:  File "/var/app/venv/staging-LQM1lest/lib64/python3.11/site-packages/anthropic/_base_client.py", line 1334, in __init__
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]:    super().__init__(**kwargs)
+Dec 21 14:56:11 ip-172-31-87-185 web[7224]: TypeError: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+
+
+----------------------------------------
+/var/log/eb-engine.log
+----------------------------------------
+
+2025/12/21 14:57:23.801629 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBAutoScalingGroup --region us-east-1
+2025/12/21 14:57:24.095039 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBBeanstalkMetadata --region us-east-1
+2025/12/21 14:57:24.388606 [INFO] checking whether command tail-log is applicable to this instance...
+2025/12/21 14:57:24.388620 [INFO] this command is applicable to the instance, thus instance should execute command
+2025/12/21 14:57:24.388623 [INFO] Engine command: (tail-log)
+
+2025/12/21 14:57:24.388680 [INFO] Executing instruction: GetTailLogs
+2025/12/21 14:57:24.388683 [INFO] Tail Logs...
+2025/12/21 14:57:24.389039 [INFO] Running command: tail -n 100 /var/log/eb-engine.log
+2025/12/21 14:57:24.391182 [INFO] Running command: tail -n 100 /var/log/eb-hooks.log
+2025/12/21 14:57:24.393065 [INFO] Running command: tail -n 100 /var/log/nginx/access.log
+2025/12/21 14:57:24.394731 [INFO] Running command: tail -n 100 /var/log/nginx/error.log
+2025/12/21 14:57:24.396433 [INFO] Running command: tail -n 100 /var/log/web.stdout.log
+2025/12/21 14:57:24.488025 [INFO] Executing cleanup logic
+2025/12/21 14:57:24.488151 [INFO] CommandService Response: {"status":"SUCCESS","api_version":"1.0","results":[{"status":"SUCCESS","msg":"Engine execution has succeeded.","returncode":0,"events":[{"msg":"Instance deployment completed successfully.","timestamp":1766329044488,"severity":"INFO"}]}]}
+
+2025/12/21 14:57:24.488173 [INFO] Platform Engine finished execution on command: tail-log
+
+2025/12/21 14:58:11.029924 [INFO] Starting...
+2025/12/21 14:58:11.029962 [INFO] Starting EBPlatform-PlatformEngine
+2025/12/21 14:58:11.029983 [INFO] reading event message file
+2025/12/21 14:58:11.030260 [INFO] Engine received EB command cfn-hup-exec
+
+2025/12/21 14:58:11.106604 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBAutoScalingGroup --region us-east-1
+2025/12/21 14:58:11.402940 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBBeanstalkMetadata --region us-east-1
+2025/12/21 14:58:11.688783 [INFO] checking whether command tail-log is applicable to this instance...
+2025/12/21 14:58:11.688795 [INFO] this command is applicable to the instance, thus instance should execute command
+2025/12/21 14:58:11.688798 [INFO] Engine command: (tail-log)
+
+2025/12/21 14:58:11.688848 [INFO] Executing instruction: GetTailLogs
+2025/12/21 14:58:11.688851 [INFO] Tail Logs...
+2025/12/21 14:58:11.689126 [INFO] Running command: tail -n 100 /var/log/nginx/error.log
+2025/12/21 14:58:11.691242 [INFO] Running command: tail -n 100 /var/log/web.stdout.log
+2025/12/21 14:58:11.693128 [INFO] Running command: tail -n 100 /var/log/eb-engine.log
+2025/12/21 14:58:11.694810 [INFO] Running command: tail -n 100 /var/log/eb-hooks.log
+2025/12/21 14:58:11.696457 [INFO] Running command: tail -n 100 /var/log/nginx/access.log
+2025/12/21 14:58:11.752001 [INFO] Executing cleanup logic
+2025/12/21 14:58:11.752106 [INFO] CommandService Response: {"status":"SUCCESS","api_version":"1.0","results":[{"status":"SUCCESS","msg":"Engine execution has succeeded.","returncode":0,"events":[{"msg":"Instance deployment completed successfully.","timestamp":1766329091752,"severity":"INFO"}]}]}
+
+2025/12/21 14:58:11.752124 [INFO] Platform Engine finished execution on command: tail-log
+
+2025/12/21 15:01:38.808053 [INFO] Starting...
+2025/12/21 15:01:38.808151 [INFO] Starting EBPlatform-PlatformEngine
+2025/12/21 15:01:38.808176 [INFO] reading event message file
+2025/12/21 15:01:38.808467 [INFO] Engine received EB command cfn-hup-exec
+
+2025/12/21 15:01:38.885372 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBAutoScalingGroup --region us-east-1
+2025/12/21 15:01:39.199156 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBBeanstalkMetadata --region us-east-1
+2025/12/21 15:01:39.500512 [INFO] checking whether command bundle-log is applicable to this instance...
+2025/12/21 15:01:39.500523 [INFO] this command is applicable to the instance, thus instance should execute command
+2025/12/21 15:01:39.500526 [INFO] Engine command: (bundle-log)
+
+2025/12/21 15:01:39.500565 [INFO] Executing instruction: GetBundleLogs
+2025/12/21 15:01:39.500568 [INFO] Bundle Logs...
+2025/12/21 15:01:39.642583 [INFO] Executing cleanup logic
+2025/12/21 15:01:39.642652 [INFO] CommandService Response: {"status":"SUCCESS","api_version":"1.0","results":[{"status":"SUCCESS","msg":"Engine execution has succeeded.","returncode":0,"events":[{"msg":"Instance deployment completed successfully.","timestamp":1766329299642,"severity":"INFO"}]}]}
+
+2025/12/21 15:01:39.642673 [INFO] Platform Engine finished execution on command: bundle-log
+
+2025/12/21 15:05:50.750935 [INFO] Starting...
+2025/12/21 15:05:50.750976 [INFO] Starting EBPlatform-PlatformEngine
+2025/12/21 15:05:50.750998 [INFO] reading event message file
+2025/12/21 15:05:50.751278 [INFO] Engine received EB command cfn-hup-exec
+
+2025/12/21 15:05:50.821845 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBAutoScalingGroup --region us-east-1
+2025/12/21 15:05:51.114842 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBBeanstalkMetadata --region us-east-1
+2025/12/21 15:05:51.395469 [INFO] checking whether command tail-log is applicable to this instance...
+2025/12/21 15:05:51.395480 [INFO] this command is applicable to the instance, thus instance should execute command
+2025/12/21 15:05:51.395483 [INFO] Engine command: (tail-log)
+
+2025/12/21 15:05:51.395522 [INFO] Executing instruction: GetTailLogs
+2025/12/21 15:05:51.395525 [INFO] Tail Logs...
+2025/12/21 15:05:51.395861 [INFO] Running command: tail -n 100 /var/log/eb-hooks.log
+2025/12/21 15:05:51.397719 [INFO] Running command: tail -n 100 /var/log/nginx/access.log
+2025/12/21 15:05:51.399400 [INFO] Running command: tail -n 100 /var/log/nginx/error.log
+2025/12/21 15:05:51.401033 [INFO] Running command: tail -n 100 /var/log/web.stdout.log
+2025/12/21 15:05:51.402603 [INFO] Running command: tail -n 100 /var/log/eb-engine.log
+2025/12/21 15:05:51.470797 [INFO] Executing cleanup logic
+2025/12/21 15:05:51.470869 [INFO] CommandService Response: {"status":"SUCCESS","api_version":"1.0","results":[{"status":"SUCCESS","msg":"Engine execution has succeeded.","returncode":0,"events":[{"msg":"Instance deployment completed successfully.","timestamp":1766329551470,"severity":"INFO"}]}]}
+
+2025/12/21 15:05:51.470887 [INFO] Platform Engine finished execution on command: tail-log
+
+2025/12/21 15:08:12.931288 [INFO] Starting...
+2025/12/21 15:08:12.931332 [INFO] Starting EBPlatform-PlatformEngine
+2025/12/21 15:08:12.931355 [INFO] reading event message file
+2025/12/21 15:08:12.931642 [INFO] Engine received EB command cfn-hup-exec
+
+2025/12/21 15:08:13.001739 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBAutoScalingGroup --region us-east-1
+2025/12/21 15:08:13.298219 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:686255975670:stack/awseb-e-pkbrrnkdkv-stack/88cd4820-de75-11f0-855a-127c65d5f8e5 -r AWSEBBeanstalkMetadata --region us-east-1
+2025/12/21 15:08:13.583904 [INFO] checking whether command tail-log is applicable to this instance...
+2025/12/21 15:08:13.583917 [INFO] this command is applicable to the instance, thus instance should execute command
+2025/12/21 15:08:13.583919 [INFO] Engine command: (tail-log)
+
+2025/12/21 15:08:13.583960 [INFO] Executing instruction: GetTailLogs
+2025/12/21 15:08:13.583963 [INFO] Tail Logs...
+2025/12/21 15:08:13.584241 [INFO] Running command: tail -n 100 /var/log/nginx/access.log
+2025/12/21 15:08:13.586140 [INFO] Running command: tail -n 100 /var/log/nginx/error.log
+2025/12/21 15:08:13.587793 [INFO] Running command: tail -n 100 /var/log/web.stdout.log
+2025/12/21 15:08:13.589445 [INFO] Running command: tail -n 100 /var/log/eb-engine.log
+
+
+----------------------------------------
+/var/log/eb-hooks.log
+----------------------------------------
+
+
