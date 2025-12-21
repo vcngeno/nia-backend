@@ -23,8 +23,14 @@ class Settings(BaseSettings):
         env_file_encoding = 'utf-8'
 
 # Initialize settings
+db_url = os.getenv("DATABASE_URL", "")
+
+# Railway fix: Convert postgresql:// to postgresql+asyncpg://
+if db_url.startswith("postgresql://"):
+    db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+
 settings = Settings(
-    DATABASE_URL=os.getenv("DATABASE_URL", ""),
+    DATABASE_URL=db_url,
     SECRET_KEY=os.getenv("SECRET_KEY", ""),
     ANTHROPIC_API_KEY=os.getenv("ANTHROPIC_API_KEY", ""),
     ALGORITHM=os.getenv("ALGORITHM", "HS256"),
