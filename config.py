@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     PORT: int = 8000
     ENVIRONMENT: str = "production"
     
-    # CORS
-    CORS_ORIGINS: str = "*"
+    # CORS - Updated for Railway frontend
+    CORS_ORIGINS: str = "https://nia-frontend-production.up.railway.app,http://localhost:5173"
     
     @property
     def cors_origins_list(self):
@@ -50,6 +50,6 @@ settings = Settings(
     ACCESS_TOKEN_EXPIRE_MINUTES=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")),
     PORT=int(os.getenv("PORT", "8000")),
     ENVIRONMENT=os.getenv("ENVIRONMENT", "production"),
-    CORS_ORIGINS=os.getenv("CORS_ORIGINS", "*"),
+    CORS_ORIGINS=os.getenv("CORS_ORIGINS", "https://nia-frontend-production.up.railway.app,http://localhost:5173"),
     DEBUG=os.getenv("DEBUG", "False").lower() == "true"
 )
