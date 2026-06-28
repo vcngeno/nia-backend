@@ -163,7 +163,7 @@ class RAGService:
             
             # Call Claude API
             response = await client.messages.create(
-                model="claude-3-5-haiku-20241022",
+                model="claude-sonnet-4-6",
                 max_tokens=800 if depth_level == 1 else 1200 if depth_level == 2 else 1500,
                 temperature=0.7,
                 system=system_prompt,
