@@ -4,12 +4,8 @@ import os
 # Get API key from environment
 api_key = os.getenv("ANTHROPIC_API_KEY")
 if not api_key:
-    # Try loading from .env file
-    with open('.env', 'r') as f:
-        for line in f:
-            if line.startswith('ANTHROPIC_API_KEY='):
-                api_key = line.split('=', 1)[1].strip()
-                break
+    print("Set ANTHROPIC_API_KEY before running the model probe.")
+    raise SystemExit(0)
 
 print(f"Using API key: {api_key[:20]}...")
 client = anthropic.Anthropic(api_key=api_key)

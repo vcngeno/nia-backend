@@ -11,3 +11,7 @@ venv/
 *.sqlite3
 .DS_Store
 .elasticbeanstalk/
+
+# Frontend build artifacts and dependencies
+frontend/node_modules/
+frontend/dist/

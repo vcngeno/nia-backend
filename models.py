@@ -67,7 +67,7 @@ class Child(Base):
     name = Column(String, nullable=False)
     age = Column(Integer, nullable=False)
     grade_level = Column(Enum(GradeLevel), nullable=False)
-    pin = Column(String(4), nullable=False)
+    pin_hash = Column(String(255), nullable=False)
     
     language = Column(Enum(Language), default=Language.ENGLISH)
     has_autism = Column(Boolean, default=False)

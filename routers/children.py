@@ -4,11 +4,19 @@ Children Management Endpoints
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Optional
 from database import get_db
 from models import Child, GradeLevel, Language
-from auth import get_current_user_id
+from auth import (
+    create_access_token,
+    get_current_user_id,
+    hash_password,
+    verify_password,
+)
+from config import settings
+from datetime import timedelta
+from rate_limit import rate_limit_pin_login
 import logging
 
 logger = logging.getLogger(__name__)
@@ -16,10 +24,12 @@ router = APIRouter()
 
 
 class ChildCreate(BaseModel):
-    name: str
-    age: int
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    name: str = Field(min_length=1, max_length=100)
+    age: int = Field(ge=3, le=18)
     grade_level: GradeLevel
-    pin: str
+    pin: str = Field(pattern=r"^[0-9]{4}$")
     language: Optional[Language] = Language.ENGLISH
     has_autism: Optional[bool] = False
     has_dyslexia: Optional[bool] = False
@@ -46,7 +56,7 @@ class ChildResponse(BaseModel):
 
 class ChildPINLogin(BaseModel):
     child_id: int
-    pin: str
+    pin: str = Field(pattern=r"^[0-9]{4}$")
 
 
 @router.post("/", response_model=ChildResponse)
@@ -57,18 +67,12 @@ async def create_child(
 ):
     """Create a new child profile"""
     
-    if len(child_data.pin) != 4 or not child_data.pin.isdigit():
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="PIN must be exactly 4 digits"
-        )
-    
     new_child = Child(
         parent_id=user_id,
         name=child_data.name,
         age=child_data.age,
         grade_level=child_data.grade_level,
-        pin=child_data.pin,
+        pin_hash=hash_password(child_data.pin),
         language=child_data.language,
         has_autism=child_data.has_autism,
         has_dyslexia=child_data.has_dyslexia,
@@ -104,6 +108,7 @@ async def get_children(
 @router.post("/login")
 async def child_pin_login(
     login_data: ChildPINLogin,
+    _: None = Depends(rate_limit_pin_login),
     db: AsyncSession = Depends(get_db)
 ):
     """Authenticate child with PIN"""
@@ -113,16 +118,23 @@ async def child_pin_login(
     )
     child = result.scalar_one_or_none()
     
-    if not child or child.pin != login_data.pin:
+    if not child or not verify_password(login_data.pin, child.pin_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid PIN"
         )
     
     logger.info(f"Child logged in: {child.name}")
+
+    access_token = create_access_token(
+        data={"child_id": child.id, "token_type": "child"},
+        expires_delta=timedelta(minutes=settings.CHILD_TOKEN_EXPIRE_MINUTES),
+    )
     
     return {
         "success": True,
+        "access_token": access_token,
+        "token_type": "bearer",
         "child": {
             "id": child.id,
             "name": child.name,

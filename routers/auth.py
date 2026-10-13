@@ -4,7 +4,7 @@ Authentication Endpoints - Parent Login/Register
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from database import get_db
 from models import User
 from auth import hash_password, verify_password, create_access_token
@@ -15,14 +15,18 @@ router = APIRouter()
 
 
 class UserRegister(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
     email: EmailStr
-    password: str
-    full_name: str
+    password: str = Field(min_length=8, max_length=128)
+    full_name: str = Field(min_length=1, max_length=100)
 
 
 class UserLogin(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
     email: EmailStr
-    password: str
+    password: str = Field(min_length=1, max_length=128)
 
 
 class TokenResponse(BaseModel):
@@ -35,7 +39,8 @@ class TokenResponse(BaseModel):
 async def register(user_data: UserRegister, db: AsyncSession = Depends(get_db)):
     """Register a new parent account"""
     
-    result = await db.execute(select(User).where(User.email == user_data.email))
+    email = str(user_data.email).lower()
+    result = await db.execute(select(User).where(User.email == email))
     existing_user = result.scalar_one_or_none()
     
     if existing_user:
@@ -45,7 +50,7 @@ async def register(user_data: UserRegister, db: AsyncSession = Depends(get_db)):
         )
     
     new_user = User(
-        email=user_data.email,
+        email=email,
         hashed_password=hash_password(user_data.password),
         full_name=user_data.full_name
     )
@@ -56,7 +61,7 @@ async def register(user_data: UserRegister, db: AsyncSession = Depends(get_db)):
     
     access_token = create_access_token(data={"user_id": new_user.id})
     
-    logger.info(f"New user registered: {user_data.email}")
+    logger.info(f"New user registered: {email}")
     
     return TokenResponse(
         access_token=access_token,
@@ -72,7 +77,8 @@ async def register(user_data: UserRegister, db: AsyncSession = Depends(get_db)):
 async def login(credentials: UserLogin, db: AsyncSession = Depends(get_db)):
     """Login with email and password"""
     
-    result = await db.execute(select(User).where(User.email == credentials.email))
+    email = str(credentials.email).lower()
+    result = await db.execute(select(User).where(User.email == email))
     user = result.scalar_one_or_none()
     
     if not user or not verify_password(credentials.password, user.hashed_password):
@@ -83,7 +89,7 @@ async def login(credentials: UserLogin, db: AsyncSession = Depends(get_db)):
     
     access_token = create_access_token(data={"user_id": user.id})
     
-    logger.info(f"User logged in: {credentials.email}")
+    logger.info(f"User logged in: {email}")
     
     return TokenResponse(
         access_token=access_token,

@@ -3,11 +3,13 @@ Conversation & Chat Endpoints
 """
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, desc
-from pydantic import BaseModel
+from sqlalchemy import desc, or_, select
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Optional
 from database import get_db
 from models import Conversation, Message, Child, FolderCategory
+from auth import get_current_actor
+from rate_limit import rate_limit_chat
 from services.rag_service import RAGService
 from services.conversation_service import ConversationService
 import logging
@@ -17,10 +19,12 @@ router = APIRouter()
 
 
 class ChatMessage(BaseModel):
-    child_id: int
-    message: str
-    conversation_id: Optional[int] = None
-    depth_level: Optional[int] = 1
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    child_id: int = Field(gt=0)
+    message: str = Field(min_length=1, max_length=4000)
+    conversation_id: Optional[int] = Field(default=None, gt=0)
+    depth_level: int = Field(default=1, ge=1, le=5)
 
 
 class MessageResponse(BaseModel):
@@ -48,22 +52,44 @@ class ConversationResponse(BaseModel):
 @router.post("/message")
 async def send_message(
     chat_data: ChatMessage,
+    actor: dict = Depends(get_current_actor),
+    _: None = Depends(rate_limit_chat),
     db: AsyncSession = Depends(get_db)
 ):
     """Send a message and get AI response"""
     
-    result = await db.execute(select(Child).where(Child.id == chat_data.child_id))
+    result = await db.execute(
+        select(Child).where(
+            Child.id == chat_data.child_id,
+            or_(
+                Child.parent_id == actor.get("user_id"),
+                Child.id == actor.get("child_id"),
+            )
+        )
+    )
     child = result.scalar_one_or_none()
     
     if not child:
         raise HTTPException(status_code=404, detail="Child not found")
     
     conversation = None
-    if chat_data.conversation_id:
+    if chat_data.conversation_id is not None:
         result = await db.execute(
-            select(Conversation).where(Conversation.id == chat_data.conversation_id)
+            select(Conversation)
+            .join(Child)
+            .where(
+                Conversation.id == chat_data.conversation_id,
+                Conversation.child_id == chat_data.child_id,
+                or_(
+                    Child.parent_id == actor.get("user_id"),
+                    Child.id == actor.get("child_id"),
+                )
+            )
         )
         conversation = result.scalar_one_or_none()
+
+        if not conversation:
+            raise HTTPException(status_code=404, detail="Conversation not found")
     
     if not conversation:
         title = ConversationService.generate_title(chat_data.message)
@@ -125,11 +151,23 @@ async def send_message(
 
 
 @router.get("/folders/{child_id}")
-async def get_folders(child_id: int, db: AsyncSession = Depends(get_db)):
+async def get_folders(
+    child_id: int,
+    actor: dict = Depends(get_current_actor),
+    db: AsyncSession = Depends(get_db)
+):
     """Get conversation folders with counts"""
     
     result = await db.execute(
-        select(Conversation).where(Conversation.child_id == child_id)
+        select(Conversation)
+        .join(Child)
+        .where(
+            Conversation.child_id == child_id,
+            or_(
+                Child.parent_id == actor.get("user_id"),
+                Child.id == actor.get("child_id"),
+            )
+        )
     )
     conversations = result.scalars().all()
     
@@ -144,15 +182,26 @@ async def get_folders(child_id: int, db: AsyncSession = Depends(get_db)):
 @router.get("/conversations/{child_id}")
 async def get_conversations(
     child_id: int,
-    folder: Optional[str] = None,
+    folder: Optional[FolderCategory] = None,
+    actor: dict = Depends(get_current_actor),
     db: AsyncSession = Depends(get_db)
 ):
     """Get conversations for a child, optionally filtered by folder"""
     
-    query = select(Conversation).where(Conversation.child_id == child_id)
+    query = (
+        select(Conversation)
+        .join(Child)
+        .where(
+            Conversation.child_id == child_id,
+            or_(
+                Child.parent_id == actor.get("user_id"),
+                Child.id == actor.get("child_id"),
+            )
+        )
+    )
     
     if folder:
-        query = query.where(Conversation.folder == FolderCategory(folder))
+        query = query.where(Conversation.folder == folder)
     
     query = query.order_by(desc(Conversation.updated_at))
     
@@ -167,12 +216,31 @@ async def get_conversations(
 
 
 @router.get("/messages/{conversation_id}")
-async def get_messages(conversation_id: int, db: AsyncSession = Depends(get_db)):
+async def get_messages(
+    conversation_id: int,
+    actor: dict = Depends(get_current_actor),
+    db: AsyncSession = Depends(get_db)
+):
     """Get all messages in a conversation"""
+
+    result = await db.execute(
+        select(Conversation)
+        .join(Child)
+        .where(
+            Conversation.id == conversation_id,
+            or_(
+                Child.parent_id == actor.get("user_id"),
+                Child.id == actor.get("child_id"),
+            )
+        )
+    )
+    conversation = result.scalar_one_or_none()
+
+    if not conversation:
+        raise HTTPException(status_code=404, detail="Conversation not found")
     
     result = await db.execute(
-        select(Message)
-        .where(Message.conversation_id == conversation_id)
+        select(Message).where(Message.conversation_id == conversation_id)
         .order_by(Message.created_at)
     )
     messages = result.scalars().all()

@@ -63,3 +63,21 @@ def get_current_user_id(credentials: HTTPAuthorizationCredentials = Depends(secu
         )
     
     return user_id
+
+
+def get_current_actor(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+) -> dict:
+    """Return the authenticated parent or child actor for scoped routes."""
+    payload = verify_token(credentials.credentials)
+
+    if payload.get("user_id") is not None:
+        return {"user_id": payload["user_id"]}
+
+    if payload.get("token_type") == "child" and payload.get("child_id") is not None:
+        return {"child_id": payload["child_id"]}
+
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid authentication credentials",
+    )

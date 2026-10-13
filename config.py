@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    CHILD_TOKEN_EXPIRE_MINUTES: int = 60
     
     # Anthropic API
     ANTHROPIC_API_KEY: str
@@ -26,6 +27,22 @@ class Settings(BaseSettings):
         if self.CORS_ORIGINS == "*":
             return ["*"]
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+
+    def validate_runtime_security(self):
+        """Reject unsafe settings when starting the production service."""
+        if self.ENVIRONMENT.lower() != "production":
+            return
+
+        if len(self.SECRET_KEY) < 32:
+            raise RuntimeError(
+                "SECRET_KEY must be at least 32 characters in production"
+            )
+
+        if self.DEBUG:
+            raise RuntimeError("DEBUG must be disabled in production")
+
+        if self.CORS_ORIGINS.strip() == "*":
+            raise RuntimeError("Wildcard CORS is not allowed in production")
     
     # Debug mode
     DEBUG: bool = False
@@ -48,6 +65,7 @@ settings = Settings(
     ANTHROPIC_API_KEY=os.getenv("ANTHROPIC_API_KEY", ""),
     ALGORITHM=os.getenv("ALGORITHM", "HS256"),
     ACCESS_TOKEN_EXPIRE_MINUTES=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")),
+    CHILD_TOKEN_EXPIRE_MINUTES=int(os.getenv("CHILD_TOKEN_EXPIRE_MINUTES", "60")),
     PORT=int(os.getenv("PORT", "8000")),
     ENVIRONMENT=os.getenv("ENVIRONMENT", "production"),
     CORS_ORIGINS=os.getenv("CORS_ORIGINS", "https://nia-frontend-production.up.railway.app,http://localhost:5173"),

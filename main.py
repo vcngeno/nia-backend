@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan events - startup and shutdown"""
+    settings.validate_runtime_security()
     logger.info("Starting Nia Learning Assistant...")
     await init_db()
     

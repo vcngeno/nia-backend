@@ -22,7 +22,7 @@ cp .env.example .env
 # Edit .env and add your keys:
 # - DATABASE_URL (PostgreSQL connection string)
 # - SECRET_KEY (generate with: python -c "import secrets; print(secrets.token_urlsafe(32))")
-# - OPENAI_API_KEY (from https://platform.openai.com)
+# - ANTHROPIC_API_KEY
 ```
 
 ### 2. Install Dependencies
@@ -66,11 +66,27 @@ nia-learning-assistant/
 
 ## 🧪 Testing
 
+```bash
+pytest -q tests
+```
+
+The model probe is separate from the test suite and requires an API key:
+
+```bash
+ANTHROPIC_API_KEY=... python model_probe.py
+```
+
 Visit http://localhost:8000/docs for interactive API documentation.
 
 ## 🚀 Deployment
 
-Ready for Railway deployment - just connect your repo and set environment variables!
+Before deployment:
+
+1. Back up the production database.
+2. Run `python3 -m migrations.migrate_child_pins` with the production `DATABASE_URL`.
+3. Set a strong `SECRET_KEY`, `ANTHROPIC_API_KEY`, `CORS_ORIGINS`, and `DEBUG=false`.
+4. Configure HTTPS and database backups.
+5. Use a distributed rate-limit store such as Redis when running multiple instances.
 
 ---
 
