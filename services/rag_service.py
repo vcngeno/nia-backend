@@ -165,7 +165,6 @@ class RAGService:
             response = await client.messages.create(
                 model="claude-sonnet-5-5",
                 max_tokens=800 if depth_level == 1 else 1200 if depth_level == 2 else 1500,
-                temperature=0.7,
                 system=system_prompt,
                 messages=claude_messages
             )
